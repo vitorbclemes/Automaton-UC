@@ -5,7 +5,7 @@ public class Node {
 	private int id;
 	private Subject subjectRequired;
 	private ArrayList<Subject> subjectsAvailable;
-	
+
 	public Node(int id,Subject sr,ArrayList<Subject> sa) {
 		this.setId(id);
 		this.setSubjectsRequired(sr);
@@ -33,6 +33,6 @@ public class Node {
 	}
 	public void setSubjectsAvailable(ArrayList<Subject> subjectsAvailable) {
 		this.subjectsAvailable = subjectsAvailable;
-	}
+	}	
 }
 

@@ -44,24 +44,33 @@ public class Controller {
 		for(int i = 0; i <s.getNivel().getSubjectsAvailable().size();i++) {
 			
 			if(s.getNivel().getSubjectsAvailable().get(i).getId() == subjectId) {
+				boolean hasSubject = false;
+				for ( int j = 0; j < s.getSubjectsDone().size();j++) {
+					if(s.getSubjectsDone().get(j).getId() == subjectId) {
+						hasSubject = true;
+					}
+				}
 				
-				s.getSubjectsDone().add(s.getNivel().getSubjectsAvailable().get(i));
+				if(!hasSubject) 
+					s.getSubjectsDone().add(s.getNivel().getSubjectsAvailable().get(i));
+				
 				success = true;
-			
 			}
-		
 		}
 		
 		return success;
 	}
+	
 	public boolean tryUpgradeStudentNode(int studentId,int subjectId) {
 		boolean success = false;
 		Student s = this.getStudent(studentId);
 		
 		for(int i = 1; i <nodes.size();i++) {
 			if(nodes.get(i).getSubjectsRequired().getId() == subjectId) {
-				s.setNivel(nodes.get(i));
-				success = true;
+				if(nodes.get(i).getId() != s.getNivel().getId()) {
+					s.setNivel(nodes.get(i));
+					success = true;
+				}
 			}
 		}
 		

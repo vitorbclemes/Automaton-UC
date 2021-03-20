@@ -60,7 +60,7 @@ public class Student {
 
 	@Override
 	public String toString() {
-		return " - Id :" +id + " \n - Nome : " + name + "\n - Nivel : " + nivel.getId() + "";
+		return " - Id :" +id + " \n - Nome : " + name + "\n - Nivel : " + nivel.getId() + "\n Assunto atual : " + nivel.getSubjectsRequired().getLabel();
 	}
 	
 	

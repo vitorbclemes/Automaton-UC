@@ -69,20 +69,12 @@ public class Main {
 		sl1.add(sb5);
 
 		
-		sle1 = new ArrayList<Subject>(); // requerido para nivel 2
-		sle1.add(sb1);
-		sle1.add(sb2);
-		
-		sle2 = new ArrayList<Subject>();
-		sle2.add(sb3);
-		sle2.add(sb4);  // requerido para nivel 3
-		
-		sle3 = new ArrayList<Subject>(); // Opicionais para nivel 2
-		sl1.forEach(value->{
-			sle3.add(value);
+		sle1 = new ArrayList<Subject>(); // extra
+		sl1.forEach(sub->{
+			sle1.add(sub);
 		});
-		sle3.add(sb6);
-		sle3.add(sb7);
+		sle1.add(sb6);
+		sle1.add(sb7);
 		
 		
 		// Lista de alunos
@@ -94,13 +86,12 @@ public class Main {
 		std.add(s5);
 		controller.setStudents(std);
 
-		
+		//Nodos
 		n1 = new Node(0,null,sl1);
-		n2 = new Node(1,sb1,sl1);
+		n2 = new Node(1,sb1,sle1);
 		n3 = new Node(2,sb2,sl1);
 		n4 = new Node(3,sb3,sl1);
 		n5 = new Node(4,sb4,sl1);
-		
 		nodes = new ArrayList<Node>();
 		nodes.add(n1);
 		nodes.add(n2);
@@ -109,6 +100,7 @@ public class Main {
 		nodes.add(n5);
 		controller.setNodes(nodes);
 		
+		// ALunos iniciam nivel 0
 		s1.setNivel(n1);
 		s2.setNivel(n1);
 		s3.setNivel(n1);
@@ -143,7 +135,9 @@ public class Main {
 								handleLoggedFunctions(3,id);
 						if(op == 4)
 								handleLoggedFunctions(4,id);
-						}
+						if(op == 5)
+								handleLoggedFunctions(5,id);
+					}
 					break;		
 				case 2:
 					int op = -1;
