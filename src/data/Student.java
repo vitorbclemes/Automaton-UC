@@ -6,7 +6,7 @@ public class Student {
 	private int password;
 	private Integer tokken;
 	private String name;
-	private Node nivel;
+	private Nodo nivel;
 	private ArrayList<Subject> subjectsDone;
 	
 	public Student(int id, int password, String name,Integer tokken,ArrayList<Subject> sd) {
@@ -25,10 +25,10 @@ public class Student {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Node getNivel() {
+	public Nodo getNivel() {
 		return nivel;
 	}
-	public void setNivel(Node nivel) {
+	public void setNivel(Nodo nivel) {
 		this.nivel = nivel;
 	}
 	public ArrayList<Subject> getSubjectsDone() {

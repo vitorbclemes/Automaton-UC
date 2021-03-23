@@ -1,18 +1,18 @@
 package data;
 import java.util.ArrayList;
 
-public class Node {
+public class Nodo {
 	private int id;
 	private Subject subjectRequired;
 	private ArrayList<Subject> subjectsAvailable;
 
-	public Node(int id,Subject sr,ArrayList<Subject> sa) {
+	public Nodo(int id,Subject sr,ArrayList<Subject> sa) {
 		this.setId(id);
 		this.setSubjectsRequired(sr);
 		this.setSubjectsAvailable(sa);
 	}
 	
-	public Node(int id) {
+	public Nodo(int id) {
 		this.setId(id);
 	}
 	

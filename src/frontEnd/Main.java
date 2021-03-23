@@ -26,18 +26,18 @@ public class Main {
 	static Subject sb6;
 	static Subject sb7;
 	
-	static Node n1;
-	static Node n2;
-	static Node n3;
-	static Node n4;
-	static Node n5;
+	static Nodo n1;
+	static Nodo n2;
+	static Nodo n3;
+	static Nodo n4;
+	static Nodo n5;
 	
 	static ArrayList<Subject> sl1;
 	static ArrayList<Subject> sle1;
 	static ArrayList<Subject> sle2;
 	static ArrayList<Subject> sle3;
 	static ArrayList<Student> std;
-	static ArrayList<Node> nodes;
+	static ArrayList<Nodo> nodes;
 	
 	
 	
@@ -87,12 +87,12 @@ public class Main {
 		controller.setStudents(std);
 
 		//Nodos
-		n1 = new Node(0,null,sl1);
-		n2 = new Node(1,sb1,sle1);
-		n3 = new Node(2,sb2,sl1);
-		n4 = new Node(3,sb3,sl1);
-		n5 = new Node(4,sb4,sl1);
-		nodes = new ArrayList<Node>();
+		n1 = new Nodo(0,null,sl1);
+		n2 = new Nodo(1,sb1,sle1);
+		n3 = new Nodo(2,sb2,sl1);
+		n4 = new Nodo(3,sb3,sl1);
+		n5 = new Nodo(4,sb4,sl1);
+		nodes = new ArrayList<Nodo>();
 		nodes.add(n1);
 		nodes.add(n2);
 		nodes.add(n3);
@@ -137,6 +137,8 @@ public class Main {
 								handleLoggedFunctions(4,id);
 						if(op == 5)
 								handleLoggedFunctions(5,id);
+						if(op == 6)
+							handleLoggedFunctions(6,id);
 					}
 					break;		
 				case 2:
@@ -167,17 +169,18 @@ public class Main {
 	}
 	
 	public static void renderLoggedScreen() {
-		System.out.println("01 - Trazer informações do aluno.");
+		System.out.println("01 - Trazer informaï¿½ï¿½es do aluno.");
 		System.out.println("02 - Exibir assuntos ja estudados");
 		System.out.println("03 - Exibir assuntos disponiveis.");
 		System.out.println("04 - Estudar assunto.");
+		System.out.println("06 - Ver progresso do aluno.");
 		System.out.println("00 - Fazer logout.");
 	}
 	
 	public static void renderUnlloggedScreen() {
 		System.out.println("01 - Exibir nomes de todos os alunos.");
-		System.out.println("02- Exibir assuntos disponíveis.");
-		System.out.println("03- Exibir assuntos requeridas para níveis");
+		System.out.println("02- Exibir assuntos disponï¿½veis.");
+		System.out.println("03- Exibir assuntos requeridas para nï¿½veis");
 		System.out.println("00 - Retornar para tela inicial.");
 	}
 	
@@ -212,6 +215,13 @@ public class Main {
 			}else {
 				System.out.println("Nao foi possivel encontrar o Assunto");
 			}
+		}
+		
+		if(operation == 6) {
+			Student graphStudent = controller.getStudent(studentId);
+			
+			Automaton graph = new Automaton(studentId,graphStudent,controller.getAllNodes());
+			
 		}
 	}
 	

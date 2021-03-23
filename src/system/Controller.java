@@ -1,18 +1,18 @@
 package system;
 import java.util.ArrayList;
-import data.Node;
+import data.Nodo;
 import data.Student;
 
 
 public class Controller {
-	public ArrayList<Node> nodes;
+	public ArrayList<Nodo> nodes;
 	public ArrayList<Student> students;
 
-	public void setNodes(ArrayList<Node> nodes) {
+	public void setNodes(ArrayList<Nodo> nodes) {
 		this.nodes = nodes;
 	}
 	
-	public ArrayList<Node> getAllNodes(){
+	public ArrayList<Nodo> getAllNodes(){
 		return nodes;
 	}
 	
