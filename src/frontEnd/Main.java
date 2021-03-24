@@ -25,6 +25,8 @@ public class Main {
 	static Subject sb5;
 	static Subject sb6;
 	static Subject sb7;
+	static Subject sb8;
+	static Subject sb9;
 	
 	static Nodo n1;
 	static Nodo n2;
@@ -52,13 +54,17 @@ public class Main {
 		s5 = new Student(5,5,"Maria",r.nextInt(),new ArrayList<Subject>());
 		
 		//Assuntos
-		sb1 = new Subject(1,"Numeros",true);
-		sb2 = new Subject(2,"Soma e diferenca",true);
-		sb3 = new Subject(3,"Multiplicacao",true);
-		sb4 = new Subject(4,"Divisao",true);
-		sb5 = new Subject(5,"Portenciacao",true);
-		sb6 = new Subject(6,"Aprofundamento em Divisao:Fracoes",false);
-		sb7 = new Subject(7,"Aprofundamento em Potenciacao : P.Negativas",false);
+		sb1 = new Subject(1,"Conceitos básicos",true);
+		sb2 = new Subject(2,"Linguagens regulares",true);
+		sb3 = new Subject(3,"Expressões Regulares",true);
+		sb4 = new Subject(4,"Gramáticas Regulares",true);
+		sb5 = new Subject(5,"Minimização de autômatos",true);
+		
+		//Complementares
+		sb6 = new Subject(6,"Autômato Finito Determinístico",false);
+		sb7 = new Subject(7,"Autômato Finito Não Determinístico",false);
+		sb8 = new Subject(8,"Vídeo Aula - Youtube",false);
+		sb9 = new Subject(9,"Livro - Linguagens Formais e Autômatos.pdf",false);
 		
 		//Lista de Assuntos
 		sl1 = new ArrayList<Subject>(); // todo os assuntos
@@ -70,11 +76,12 @@ public class Main {
 
 		
 		sle1 = new ArrayList<Subject>(); // extra
-		sl1.forEach(sub->{
-			sle1.add(sub);
-		});
 		sle1.add(sb6);
 		sle1.add(sb7);
+		
+		sle2 = new ArrayList<Subject>(); // extra
+		sle2.add(sb8);
+		sle2.add(sb9);
 		
 		
 		// Lista de alunos
@@ -88,8 +95,8 @@ public class Main {
 
 		//Nodos
 		n1 = new Nodo(0,null,sl1);
-		n2 = new Nodo(1,sb1,sle1);
-		n3 = new Nodo(2,sb2,sl1);
+		n2 = new Nodo(1,sb1,sl1, sle1);
+		n3 = new Nodo(2,sb2,sl1, sle2);
 		n4 = new Nodo(3,sb3,sl1);
 		n5 = new Nodo(4,sb4,sl1);
 		nodes = new ArrayList<Nodo>();
@@ -137,8 +144,6 @@ public class Main {
 								handleLoggedFunctions(4,id);
 						if(op == 5)
 								handleLoggedFunctions(5,id);
-						if(op == 6)
-							handleLoggedFunctions(6,id);
 					}
 					break;		
 				case 2:
@@ -173,7 +178,7 @@ public class Main {
 		System.out.println("02 - Exibir assuntos ja estudados");
 		System.out.println("03 - Exibir assuntos disponiveis.");
 		System.out.println("04 - Estudar assunto.");
-		System.out.println("06 - Ver progresso do aluno.");
+		System.out.println("05 - Ver progresso do aluno.");
 		System.out.println("00 - Fazer logout.");
 	}
 	
@@ -209,19 +214,17 @@ public class Main {
 			int subjectId = s.nextInt();
 			
 			if(controller.tryNewStudy(studentId, subjectId)) {
-				if(controller.tryUpgradeStudentNode(studentId,subjectId)) {
-					System.out.println("O aluno mudou de nivel.");
-				}
+				System.out.println("Link para o conteúdo: " + controller.getSubject(controller.getStudent(studentId).getNivel(), subjectId).getLink() );
+				controller.tryUpgradeStudentNode(studentId,subjectId);
 			}else {
 				System.out.println("Nao foi possivel encontrar o Assunto");
 			}
 		}
 		
-		if(operation == 6) {
+		if(operation == 5) {
 			Student graphStudent = controller.getStudent(studentId);
-			
-			Automaton graph = new Automaton(studentId,graphStudent,controller.getAllNodes());
-			
+			Automaton graph = new Automaton(studentId,graphStudent,controller.getAllNodes(), sl1, sl1);
+			graph.draw();
 		}
 	}
 	

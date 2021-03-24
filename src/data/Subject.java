@@ -5,14 +5,21 @@ public class Subject {
 	private int id;
 	private String label;
 	private boolean mandatory;
+	private String link;
 	
 	
-	
+	public String getLink() {
+		return link;
+	}
+	public void setLink(String link) {
+		this.link = link;
+	}
 	public Subject(int id, String label, boolean mandatory) {
 		super();
 		this.id = id;
 		this.label = label;
 		this.mandatory = mandatory;
+		this.link = "www.lfa/"+label;
 	}
 	public int getId() {
 		return id;

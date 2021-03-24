@@ -10,19 +10,31 @@ import org.enoir.graphvizapi.*;
 
 public class Automaton {
 	private int id;
-	public ArrayList<Nodo> nodes;
 	private Student student;
 	private static String tmpPath = "/home/pedro/Imagens/img_lfa";
+	private Nodo currentState;
+	
+	//Mealy Machine
+	public ArrayList<Nodo> nodes;
+	private Nodo initialState;
+	private ArrayList<Subject> inputAlphabet;
+	private ArrayList<Subject> outputAlphabet;
+	
 
-	public Automaton(int id,Student std,ArrayList<Nodo> ns) {
+	public Automaton(int id,Student std,ArrayList<Nodo> ns, ArrayList<Subject> alphabetI, ArrayList<Subject> alphabetO) {
 		this.setId(id);
 		this.setStudent(std);
+		
+		//Mealy Machine
 		this.setNodes(ns);
-		this.draw();
+		this.setInputAlphabet(alphabetI);
+		this.setOutputAlphabet(alphabetO);
+		this.initialState = nodes.get(0);
 	}
 	
-	public Automaton(int id) {
-		this.setId(id);
+	public String programFunction(Automaton automaton, Subject subject) {
+		this.currentState = currentState;
+		return "Done";
 	}
 	
 	public int getId() {
@@ -44,64 +56,70 @@ public class Automaton {
 		this.nodes = newNodes;
 	}
 	
-	private void draw()
+	public ArrayList<Subject> getInputAlphabet() {
+		return inputAlphabet;
+	}
+	
+	public void setInputAlphabet(ArrayList<Subject> newInputAlphabet) {
+		this.inputAlphabet = newInputAlphabet;
+	}
+	
+	public ArrayList<Subject> getOutputAlphabet() {
+		return outputAlphabet;
+	}
+	
+	public void setOutputAlphabet(ArrayList<Subject> newOutputAlphabet) {
+		this.outputAlphabet = newOutputAlphabet;
+	}
+	
+	public void draw()
     {
-		System.out.println("JOÃOZINHO");
         Graphviz gv = new Graphviz();
         Graph graph = new Graph("g1", GraphType.DIGRAPH);
         graph.addAttribute(new Attribute("rankdir", "LR"));
         
         for(int i=0;i<nodes.size();i++) {
         	String nodeLabel = Integer.toString(nodes.get(i).getId());
-        	Node newGraphNode = new Node(nodeLabel);
-//        	newGraphNode.addAttribute( new Attribute("label", nodes.get(i).getSubjectsRequired().getLabel()));
-//        	newGraphNode.addAttribute( new Attribute("label", "\"  \""));
+        	
+        	Node newGraphNode = new Node(nodeLabel, nodes.get(i));
+        	if(i==0)
+        		newGraphNode.addAttribute(new Attribute("label", "\" -> Inicial \""));
+
         	if(nodes.get(i).getId() == this.student.getNivel().getId()) {
         		newGraphNode.addAttribute( new Attribute("style", "filled") );
         		newGraphNode.addAttribute( new Attribute("color", "green") );
-        		newGraphNode.addAttribute(new Attribute("label","\" Estado atual \""));
         	}
+        	
         	graph.addNode(newGraphNode);
         }
         
         List<Node> graphNodes = graph.getNodes();
         
         for(Node node1:graphNodes) {
-        	Nodo currentNode = student.getNivel();
-//        	for(int i=0;i<currentNode.getSubjectsAvailable().size();i++) {
-//        		if(!currentNode.getSubjectsAvailable().get(i).isMandatory()) {        			
-//        			Node newSideNode = new Node("Saco");
-//        			System.out.println(currentNode.getSubjectsAvailable().get(i).toString());
-//        			newSideNode.addAttribute( new Attribute("style", "filled") );
-//        			newSideNode.addAttribute( new Attribute("color", "yellow") );
-//        			graph.addEdge( new Edge("", node1, newSideNode));
-//        		}
-//        	}
+        	if(node1.getNodo().getExtraSubject() != null) {
+        		for(Subject s:node1.getNodo().getExtraSubject()) {
+        			Edge newEdge = new Edge("", node1, node1);
+            		newEdge.addAttribute( new Attribute("label", " \" " + s.getId() + " : " + s.getLink()  + " \"") );
+            		graph.addEdge( newEdge);
+        		}
+        	}
         	for(Node node2:graphNodes) {
-        		graph.addEdge( new Edge("", node1, node2));
+        		if(node2.getNodo().getId()==0) {
+        			continue;
+        		}
+        		Edge newEdge = new Edge("", node1, node2);
+        		newEdge.addAttribute( new Attribute("label", " \" " + node2.getNodo().getSubjectsRequired().getId() + " : " + node2.getNodo().getSubjectsRequired().getLink()  + " \"") );
+        		graph.addEdge( newEdge);
         	}
         }
 
-
-//        Node n1 = new Node("N1");
-//        n1.addAttribute(new Attribute("label", "\" Node1 \""));
-//        Node n2 = new Node("N2");
-//        Node n3 = new Node("N3");
-//        graph.addNode(n1);
-//        graph.addNode(n2);
-//        graph.addNode(n3);
-//        graph.addEdge(new Edge("", n1, n2));
-//        graph.addEdge(new Edge("", n2, n3));
-//        graph.addEdge(new Edge("",n3,n1));
-
-
         String type = "png";
 
-        File out = new File(tmpPath+"/outEX1."+ type);
+        File out = new File(tmpPath+"/progessoAluno"+student.getId() + "." + type);
         this.writeGraphToFile( gv.getGraphByteArray(graph, type, "100"), out );
     }
 	
-	public int writeGraphToFile(byte[] img, File to)
+	private int writeGraphToFile(byte[] img, File to)
     {
         try {
             FileOutputStream fos = new FileOutputStream(to);

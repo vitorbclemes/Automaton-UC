@@ -2,6 +2,7 @@ package system;
 import java.util.ArrayList;
 import data.Nodo;
 import data.Student;
+import data.Subject;
 
 
 public class Controller {
@@ -22,6 +23,16 @@ public class Controller {
 	
 	public ArrayList<Student> getAllStudents(){
 		return students;
+	}
+	
+	public Subject getSubject(Nodo currentNode, int subjectId) {
+		Subject subject = null;
+		for(int i=0; i<currentNode.getSubjectsAvailable().size();i++) {
+			if(currentNode.getSubjectsAvailable().get(i).getId() == subjectId) {
+				subject = currentNode.getSubjectsAvailable().get(i);
+			}
+		}
+		return subject;
 	}
 	
 	
@@ -85,8 +96,11 @@ public class Controller {
 		}
 		
 		for ( int i = 0; i< this.getAllStudents().size();i++) {
-			if(this.getAllStudents().get(i).getId() == id || this.getAllStudents().get(i).getPassword() == password) {
-				tokkenResult = this.getAllStudents().get(i).getTokken();
+			if(this.getAllStudents().get(i).getId() == id && this.getAllStudents().get(i).getPassword() == password) {
+				
+				if(this.getAllStudents().get(i).getTokken() != null) {
+					tokkenResult = this.getAllStudents().get(i).getTokken();
+				}
 			}
 		}
 		
