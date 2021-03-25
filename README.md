@@ -1,69 +1,26 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este projeto foi desenvolvido por Pedro Henrique Serpa e Vitor Bernstorff Clemes para a disciplina de Linguagens Formais e Autômatos - UDESC - Março/2021
+Este projeto pode ser encontrado em https://github.com/vitorbclemes/lfaTrabson
 
-## Available Scripts
+## `Sistema Operacional Utilizado`
 
-In the project directory, you can run:
+Desenvolvimento: Windows, Linux Ubuntu 20.04 LTS
+Testes e Produção : Linux Ubunutu 20.04 LTS
 
-### `yarn start`
+### `Ambiente utilizado`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Foi optado pelo uso do Eclipse IDE. A utilização da IDE é **extremamente** recomendado, pois o projeto foi criado já neste ambiente, e a sua conversão para qualquer outro ambiente pode resultar em erros não esperados.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### `Condições de Uso`
 
-### `yarn test`
+Os testes forem realizados através do próprio compilador do Eclipse. A versão do JDK utilizada foi a 11.0.10;
+A entrada de dados deve ser realizada pelo teclado.
+Após a autenticação, ao selecionar a opção 05, uma imagem no formato .png será gerado na pasta "./automaton",que se encontra na raíz do projeto.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `Informações Extras`
 
-### `yarn build`
+Não foi desenvolvido um banco de dados para este projeto. Em vez disso, na classe Main,presente no package frontEnd, foram instanciados certos objetos para teste. Vale a pena
+checar os valores para realizar um teste mais apurado. Em resumo, foram instanciados:
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-# instagram-clone-codenation
+- 5 objetos da classe Student
+- 9 objetos da classe Subject
+- 5 objetos da classe Nodo
