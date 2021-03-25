@@ -1,4 +1,5 @@
 Este projeto foi desenvolvido por Pedro Henrique Serpa e Vitor Bernstorff Clemes para a disciplina de Linguagens Formais e Autômatos - UDESC - Março/2021
+
 Este projeto pode ser encontrado em https://github.com/vitorbclemes/lfaTrabson
 
 ## `Sistema Operacional Utilizado`
