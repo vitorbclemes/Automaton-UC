@@ -11,7 +11,8 @@ import org.enoir.graphvizapi.*;
 public class Automaton {
 	private int id;
 	private Student student;
-	private static String tmpPath = "/home/pedro/Imagens/img_lfa";
+	private static String tmpPath = "automaton/";
+	private static String absoluteTestPath = new File(tmpPath).getAbsolutePath();
 	private Nodo currentState;
 	
 	//Mealy Machine
@@ -114,8 +115,7 @@ public class Automaton {
         }
 
         String type = "png";
-
-        File out = new File(tmpPath+"/progessoAluno"+student.getId() + "." + type);
+        File out = new File(absoluteTestPath+"/progessoAluno"+student.getId() + "." + type);
         this.writeGraphToFile( gv.getGraphByteArray(graph, type, "100"), out );
     }
 	
